@@ -1,0 +1,4 @@
+DHT22_DoAnVXL.c:9:6:User_DHT22_Write	32	static
+DHT22_DoAnVXL.c:16:6:User_DHT22_GetData	40	static
+DHT22_DoAnVXL.c:38:7:User_DHT22_GetTemperature	16	static
+DHT22_DoAnVXL.c:43:7:User_DHT22_GetHumidity	16	static

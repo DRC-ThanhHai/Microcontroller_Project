@@ -1,0 +1,3 @@
+User_DoAnVXL_BASE_LIB.c:10:6:User_ClearArrayBuffer	24	static
+User_DoAnVXL_BASE_LIB.c:17:6:User_CombineFunc_ReadDHT22_ShowOnGLCD	16	static
+User_DoAnVXL_BASE_LIB.c:27:6:User_CombineFunc_UARTReceiveData_ShowOnGLCD	24	static
