@@ -1,0 +1,90 @@
+Configuration	DoAnVXL1
+STM32CubeMX 	5.6.0
+Date	07/26/2020
+MCU	STM32F103C8Tx
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+I2C2	I2C	I2C2_SCL	PB10
+I2C2	I2C	I2C2_SDA	PB11
+SYS	Serial Wire	SYS_JTCK-SWCLK	PA14
+SYS	Serial Wire	SYS_JTMS-SWDIO	PA13
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM2	Internal Clock	TIM2_VS_ClockSourceINT	VP_TIM2_VS_ClockSourceINT
+TIM2	PWM Generation CH1	TIM2_CH1	PA15
+USART1	Asynchronous	USART1_RX	PA10
+USART1	Asynchronous	USART1_TX	PA9
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+17	PA7	GPIO_Output	DB7
+18	PB0	GPIO_Output	DB6
+19	PB1	GPIO_Output	DB5
+21	PB10	I2C2_SCL	
+22	PB11	I2C2_SDA	
+25	PB12	GPIO_Output	DB4
+30	PA9	USART1_TX	
+31	PA10	USART1_RX	
+34	PA13	SYS_JTMS-SWDIO	
+37	PA14	SYS_JTCK-SWCLK	
+38	PA15	TIM2_CH1	
+39	PB3	GPIO_Output	E
+40	PB4	GPIO_Output	RW
+41	PB5	GPIO_Output	RS
+PERIPHERALS	MODES	FUNCTIONS	PINS
+I2C2	I2C	I2C2_SCL	PB10
+I2C2	I2C	I2C2_SDA	PB11
+SYS	Serial Wire	SYS_JTCK-SWCLK	PA14
+SYS	Serial Wire	SYS_JTMS-SWDIO	PA13
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM2	Internal Clock	TIM2_VS_ClockSourceINT	VP_TIM2_VS_ClockSourceINT
+TIM2	PWM Generation CH1	TIM2_CH1	PA15
+USART1	Asynchronous	USART1_RX	PA10
+USART1	Asynchronous	USART1_TX	PA9
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+17	PA7	GPIO_Output	DB7
+18	PB0	GPIO_Output	DB6
+19	PB1	GPIO_Output	DB5
+21	PB10	I2C2_SCL	
+22	PB11	I2C2_SDA	
+25	PB12	GPIO_Output	DB4
+30	PA9	USART1_TX	
+31	PA10	USART1_RX	
+34	PA13	SYS_JTMS-SWDIO	
+37	PA14	SYS_JTCK-SWCLK	
+38	PA15	TIM2_CH1	
+39	PB3	GPIO_Output	E
+40	PB4	GPIO_Output	RW
+41	PB5	GPIO_Output	RS
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : DoAnVXL1
+Project Folder : D:\STM32F103C8T6\DoAnVXL1
+Toolchain / IDE : STM32CubeIDE
+Firmware Package Name and Version : STM32Cube FW_F1 V1.8.0
+
+
+Code Generation Settings : 
+STM32Cube MCU packages and embedded software packs : Copy only the necessary library files
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : No
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : 
+
+
+
+
+

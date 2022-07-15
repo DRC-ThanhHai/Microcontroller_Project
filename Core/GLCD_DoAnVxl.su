@@ -1,0 +1,9 @@
+GLCD_DoAnVxl.c:5:6:User_GLCD_TestGLCDPin	16	static
+GLCD_DoAnVxl.c:16:6:User_GLCD_GotoXY	16	static
+GLCD_DoAnVxl.c:34:6:User_GLCD_ShowString	24	static
+GLCD_DoAnVxl.c:53:6:User_GLCD_SendCommand	16	static
+GLCD_DoAnVxl.c:73:6:User_GLCD_SendData	16	static
+GLCD_DoAnVxl.c:93:6:User_GLCD_ShowStringNoXY	24	static
+GLCD_DoAnVxl.c:109:6:User_GLCD_Init	16	static
+GLCD_DoAnVxl.c:128:6:User_GLCD_ConvertInt16ToChar	16	static
+GLCD_DoAnVxl.c:133:6:User_GLCD_ConvertFloatToChar	24	static
