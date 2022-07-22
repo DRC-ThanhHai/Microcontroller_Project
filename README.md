@@ -2,7 +2,7 @@
 
 ## Intro
 - This project is about making a Digital Perpetual Calendar that shows time, day, temperature, and humidity.
-- In this project, we used stm32f103C8T6 as the main controller, GLCD for display, RTC ds1307 for time, SHT31 sensor for measure temperature and humidity, and esp8266 for updating time from the internet.
+- In this project, we used stm32f103C8T6 as the main controller, GLCD for display, RTC ds1307 for time, SHT31 sensor for measuring temperature and humidity, and esp8266 for updating time from the internet.
 
 ## Team members
 Our team has two members:
