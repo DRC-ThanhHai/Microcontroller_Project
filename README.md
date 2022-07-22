@@ -7,7 +7,7 @@
 ## Team members
 Our team has two members:
 - Me (Thanh Hai). I did the software programming part. My responsibilities are to develop software for testing hardware components (push buttons, bell, ...), interface with ds1307, display on GLCD, and write a program for users to interface with the project. (The demo video below shows more about the user interface.)
-- My friend (Minh Khoa). He did the hardware and firmware parts. His role is to design PCB and solder components, develop drivers for GLCD and SHT31, interface with the SHT31 sensor using I2C communication, and program esp8266 to interface with stm32 via UART and get time from the NTP server.
+- My friend (Minh Khoa). He did the hardware and firmware parts. His role is to design PCB and solder components, develop drivers for GLCD and SHT31, interface with the SHT31 sensor using I2C communication, communicate stm32 with esp8266 via UART, and program esp8266 to get time from the NTP server.
 
 ## Demo
 This is a demo video for our project.
