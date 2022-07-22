@@ -1,4 +1,4 @@
-# Microprocessor Project
+# Microcontroller Project
 
 ## Intro
 - This project is about making a Digital Perpetual Calendar that shows time, day, temperature, and humidity.
@@ -10,4 +10,3 @@
 ## Demo
 This is a demo video for our project.
 Link: https://youtu.be/uYHr1KI5tts
-
