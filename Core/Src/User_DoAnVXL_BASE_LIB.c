@@ -17,12 +17,12 @@ void User_ClearArrayBuffer(char* Buffer)
 }
 void User_CombineFunc_ReadDHT22_ShowOnGLCD(I2C_HandleTypeDef *i2c,User_DHT22_Data *User_DHT22)
 {
-	User_DHT22_GetData(i2c, User_DHT22);
+	User_DHT22_GetData(i2c, User_DHT22); HAL_Delay(50);
 	User_GLCD_GotoXY(0, 2);
-	sprintf(User_GLCD_DataBuffer,"T=%.2f C",User_DHT22_GetTemperature(User_DHT22));
+	sprintf(User_GLCD_DataBuffer,"Temp  = %.2fC",User_DHT22_GetTemperature(User_DHT22));
 	User_GLCD_ShowStringNoXY(User_GLCD_DataBuffer);
 	User_GLCD_GotoXY(0, 3);
-	sprintf(User_GLCD_DataBuffer,"H=%.2f%%",User_DHT22_GetHumidity(User_DHT22));
+	sprintf(User_GLCD_DataBuffer,"Humid = %.2f%%",User_DHT22_GetHumidity(User_DHT22));
 		User_GLCD_ShowStringNoXY(User_GLCD_DataBuffer);
 	HAL_Delay(1); // delay to avoid get fail data
 }

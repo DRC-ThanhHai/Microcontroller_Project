@@ -14,6 +14,8 @@
 #include "GLCD_DoAnVxl.h"
 #include "DHT22_DoAnVXL.h"
 #include "Button_Interface_DoAnVxl.h"
+#include "Mode.h"
+
 void User_ClearArrayBuffer(char* Buffer);
 void User_CombineFunc_ReadDHT22_ShowOnGLCD();
 void User_CombineFunc_UARTReceive_ShowOnGLCD( uint8_t x,uint8_t y, uint8_t User_NumOfUARTBuffer,char * User_GLCD_Buffer,char * User_UARTBuffer);

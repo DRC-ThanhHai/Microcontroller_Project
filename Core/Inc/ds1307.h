@@ -59,4 +59,10 @@ DS1307_RESULT DS1307_WaitUntilReady(DS1307_Handle* handle);
 void DS1307_Send(I2C_HandleTypeDef *pds1307,uint8_t *data,uint8_t NumOfBytes);
 DS1307_TIME MyDS1307_GetTime(I2C_HandleTypeDef *hi2c);
 void MyDS1307_SetTime(I2C_HandleTypeDef *hi2c, DS1307_TIME time);
+
+DS1307_Handle User_DS1307_Handle;
+
+DS1307_TIME User_DS_Time;
+
+
 #endif /* DS1307_H_ */

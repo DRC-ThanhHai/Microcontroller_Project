@@ -20,6 +20,7 @@ void User_Button_Next();
 void User_Button_Cancel();
 void User_Button_Mode();
 void User_Button_OK();
+int Key_Press(GPIO_TypeDef *GPIO_Port,uint16_t GPIO_Pin);
 
 
 #endif /* INC_BUTTON_INTERFACE_DOANVXL_H_ */

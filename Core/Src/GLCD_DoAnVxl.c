@@ -122,7 +122,7 @@ void User_GLCD_Init()
 	User_GLCD_ShowString(0,2,User_GLCD_DataBuffer);
 	strcpy(User_GLCD_DataBuffer,"   17151197");
 	User_GLCD_ShowString(0,3,User_GLCD_DataBuffer);
-	HAL_Delay(500);
+	HAL_Delay(1000);
 	User_ClearArrayBuffer((char*)User_GLCD_DataBuffer);
 	User_GLCD_SendCommand(GLCD_Clear);
 	HAL_Delay(20);

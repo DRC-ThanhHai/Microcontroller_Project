@@ -1,13 +1,8 @@
-/*
- * Button_Interface_DoAnVXL.c
- *
- *  Created on: Aug 12, 2020
- *      Author: KHOA
- */
 #include "main.h"
 #include "Button_Interface_DoAnVxl.h"
 //
 
+int DL_BTN;
 //uint8_t User_Button_countCancel = 0;
 //uint8_t User_Button_countDown = 0;
 //uint8_t User_Button_countUp = 0;
@@ -28,6 +23,22 @@ int User_Button_Up()
 	}
 	else return 0;
 }
+
+int Key_Press(GPIO_TypeDef *GPIO_Port,uint16_t GPIO_Pin)
+{
+	if(!HAL_GPIO_ReadPin(GPIO_Port,GPIO_Pin))
+	{
+		DL_BTN++;
+		if(DL_BTN==1) return 1;
+		else
+		{
+			if(DL_BTN>=50) DL_BTN = 0;
+		}
+	}
+	else return 0;
+}
+
+
 /*
 void User_Button_Down()
 {

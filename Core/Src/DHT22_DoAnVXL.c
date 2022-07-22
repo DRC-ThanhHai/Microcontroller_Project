@@ -18,7 +18,7 @@ void User_DHT22_GetData(I2C_HandleTypeDef *hi2c,User_DHT22_Data *User_DHT22)
 	uint8_t DHT22_I2CDataBufferReceived[6]={0};
 	uint16_t Buffer=0;
 	User_DHT22_Write(hi2c,DHT22_WakeUp);
-	HAL_Delay(1);
+	HAL_Delay(100);
 	User_DHT22_Write(hi2c,DHT22_Measure);
 	HAL_I2C_Master_Receive(hi2c,DHT22_Address +1,DHT22_I2CDataBufferReceived,6,HAL_MAX_DELAY);
 	User_DHT22_Write(hi2c,DHT22_Sleep);

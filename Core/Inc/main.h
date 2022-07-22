@@ -68,8 +68,6 @@ void Error_Handler(void);
 #define Cancel_GPIO_Port GPIOA
 #define Next_Pin GPIO_PIN_1
 #define Next_GPIO_Port GPIOA
-#define MODE_Pin GPIO_PIN_4
-#define MODE_GPIO_Port GPIOA
 #define OK_Pin GPIO_PIN_5
 #define OK_GPIO_Port GPIOA
 #define DB7_Pin GPIO_PIN_7
@@ -80,6 +78,8 @@ void Error_Handler(void);
 #define DB5_GPIO_Port GPIOB
 #define DB4_Pin GPIO_PIN_12
 #define DB4_GPIO_Port GPIOB
+#define MODE_Pin GPIO_PIN_13
+#define MODE_GPIO_Port GPIOB
 #define Buzzer_Pin GPIO_PIN_8
 #define Buzzer_GPIO_Port GPIOA
 #define E_Pin GPIO_PIN_3

@@ -17,7 +17,6 @@
   ******************************************************************************
   */
 /* USER CODE END Header */
-
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
@@ -28,6 +27,7 @@
 #include "User_DoAnVXL_BASE_LIB.h"
 #include "Button_Interface_DoAnVxl.h"
 #include "ds1307.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,13 +54,12 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 User_DHT22_Data MyDHT;
-DS1307_Handle User_DS1307_Handle;
+
 uint8_t User_UART_RCV[16]={0};
 uint8_t User_UART_RXIndex=0;
 char User_UART_TempBufferData[1];// Array work properly, fail test on nomal var and pointer
-DS1307_TIME User_DS_Time;
 
-int User_Button_countUp = 0;
+//int User_Button_countUp = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -101,7 +100,7 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 //	uint8_t User_UART_Data[10]={0};
-
+	//uint8_t countUp=0;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -131,30 +130,32 @@ int main(void)
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
 
   HAL_UART_Receive_IT(&huart1,(uint8_t*)User_UART_TempBufferData, 1);
+
 //  HAL_UART_Receive_IT(&huart1,(uint8_t*)User_UART_RCV, 16);
   User_GLCD_Init();
   if(DS1307_Init(&User_DS1307_Handle)==DS1307_RES_OK)
   {
-	  User_DS_Time.second=45;
-	  User_DS_Time.minute=19;
-	  User_DS_Time.hour=11;
-	  User_DS_Time.day=3;
-	  User_DS_Time.date=11;
+	  User_DS_Time.second=50;
+	  User_DS_Time.minute=21;
+	  User_DS_Time.hour=10;
+	  User_DS_Time.day=2;
+	  User_DS_Time.date=17;
 	  User_DS_Time.month=8;
 	  User_DS_Time.year=2020;
-
   }
-  DS1307_SetTime(&User_DS1307_Handle, User_DS_Time);
+  //DS1307_SetTime(&User_DS1307_Handle, User_DS_Time);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  //User_DS_Time= DS1307_GetTime(&User_DS1307_Handle);
+	  User_Mode(&hi2c2, &MyDHT,User_UART_RCV);
 
 
-//	  /*
-
+	  /*
 	  if(strcmp(User_UART_RCV,"MCUGetCmd")==0)
 	  {
 		  User_GLCD_ClearDisplay();
@@ -170,7 +171,8 @@ int main(void)
 		  User_ClearArrayBuffer(User_UART_RCV);
 		  	  Run_while();
 	  }
-//		*/
+	  */
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -187,7 +189,8 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
@@ -197,7 +200,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
@@ -360,7 +363,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOA, DB7_Pin|Buzzer_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, DB6_Pin|DB5_Pin|DB4_Pin|E_Pin 
+  HAL_GPIO_WritePin(GPIOB, DB6_Pin|DB5_Pin|DB4_Pin|E_Pin
                           |RW_Pin|RS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : Down_Pin Up_Pin */
@@ -369,8 +372,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : Cancel_Pin Next_Pin MODE_Pin OK_Pin */
-  GPIO_InitStruct.Pin = Cancel_Pin|Next_Pin|MODE_Pin|OK_Pin;
+  /*Configure GPIO pins : Cancel_Pin Next_Pin OK_Pin */
+  GPIO_InitStruct.Pin = Cancel_Pin|Next_Pin|OK_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -382,14 +385,20 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DB6_Pin DB5_Pin DB4_Pin E_Pin 
+  /*Configure GPIO pins : DB6_Pin DB5_Pin DB4_Pin E_Pin
                            RW_Pin RS_Pin */
-  GPIO_InitStruct.Pin = DB6_Pin|DB5_Pin|DB4_Pin|E_Pin 
+  GPIO_InitStruct.Pin = DB6_Pin|DB5_Pin|DB4_Pin|E_Pin
                           |RW_Pin|RS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : MODE_Pin */
+  GPIO_InitStruct.Pin = MODE_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(MODE_GPIO_Port, &GPIO_InitStruct);
 
 }
 
@@ -398,24 +407,27 @@ void Run_while()
 {
 
 	/*
-	User_DS_Time= DS1307_GetTime(&User_DS1307_Handle);
-	User_GLCD_GotoXY(0, 0);
-	sprintf(User_GLCD_DataBuffer,"%d:%d:%d",User_DS_Time.hour,User_DS_Time.minute,User_DS_Time.second);
-	User_GLCD_ShowStringNoXY(User_GLCD_DataBuffer);
-	User_GLCD_GotoXY(0, 1);
-	sprintf(User_GLCD_DataBuffer,"%d/%d/%d",User_DS_Time.date,User_DS_Time.month,User_DS_Time.year);
-	User_GLCD_ShowStringNoXY(User_GLCD_DataBuffer);
-	User_CombineFunc_ReadDHT22_ShowOnGLCD(&hi2c2, &MyDHT);
-	HAL_Delay(20);
+	int mode = 0;
+	if (mode == 0) User_Show_Default();
+	if (mode == 1) User_Show_Time_Mode();
+	if (mode == 2) User_Show_Temp_Humid_Mode();
+	if (mode == 3) User_Set_Time_Mode();
+	if (mode == 4) User_Set_Allarm_Mode();
+	User_MODE_MODE();
 	*/
-
-	if(User_Button_Up()==1)
+	/*
+	void User_Mode()
 	{
-		User_Button_countUp ++;
-		HAL_Delay(500);
-		sprintf(User_GLCD_DataBuffer,"U=%d",User_Button_countUp);
-		User_GLCD_ShowString(0, 0, User_GLCD_DataBuffer);
+		int mode = 0;
+		if (mode == 0) User_Show_Default();
+		if (mode == 1) User_Show_Time_Mode();
+		if (mode == 2) User_Show_Temp_Humid_Mode();
+		if (mode == 3) User_Set_Time_Mode();
+		if (mode == 4) User_Set_Allarm_Mode();
+
+		User_MODE_MODE();
 	}
+*/
 
 
 }
@@ -443,7 +455,7 @@ void Error_Handler(void)
   * @retval None
   */
 void assert_failed(uint8_t *file, uint32_t line)
-{ 
+{
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
